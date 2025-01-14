@@ -5,7 +5,7 @@ import HomePage from './pages/HomePage';
 function App() {
   return (
     <Router>
-      <div className="mx-20">
+      <div className=" text-midnight">
         <Navbar />
         <div>
           <Routes>
