@@ -1,6 +1,9 @@
+import logoFaders from '../assets/images/logos/faders.png';
+
 export default function Navbar() {
   return (
-    <nav className="fixed top-0 right-0 p-6 w-full">
+    <nav className="fixed top-0 right-0 p-6 w-full flex items-center">
+      <img src={logoFaders} alt="logo" className="w-12 h-12" />
       <ul className="flex gap-10 justify-end container mx-auto px-20 font-navlinks font-semibold">
         <li>
           <a href="/" className="cursor-pointer">
