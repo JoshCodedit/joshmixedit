@@ -7,7 +7,7 @@ function App() {
     <Router>
       <div className="text-midnight">
         <Navbar />
-        <div className="pt-24">
+        <div>
           <Routes>
             <Route path="/" element={<HomePage />} />
           </Routes>

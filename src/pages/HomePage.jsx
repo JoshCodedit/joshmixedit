@@ -1,5 +1,6 @@
 import BackgroundVideo from '../components/BackgroundVideo';
 import MyWorkComponent from '../components/MyWorkComponent';
+import ServicesComponent from '../components/ServicesComponent';
 import headerMp4 from '../assets/videos/siteHeader0001-0598.mp4';
 import LogoComponent from '../components/LogoComponent';
 import { HiSpeakerWave } from 'react-icons/hi2';
@@ -22,9 +23,13 @@ export default function HomePage() {
           </button>
         </div>
       </div>
-      <section>
+      <section className="my-16">
         <h2 className="section-heading">MY WORK</h2>
         <MyWorkComponent />
+      </section>
+      <section className="my-16">
+        <h2 className="section-heading">SERVICES</h2>
+        <ServicesComponent />
       </section>
     </>
   );
