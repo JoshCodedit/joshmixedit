@@ -15,4 +15,8 @@
   .nav-link:hover::after {
     @apply scale-x-100;
   }
+
+  .section-heading {
+    @apply text-center text-3xl my-6 font-kanit font-medium tracking-wider;
+  }
 }

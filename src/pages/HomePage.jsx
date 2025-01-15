@@ -1,4 +1,5 @@
 import BackgroundVideo from '../components/BackgroundVideo';
+import MyWorkComponent from '../components/MyWorkComponent';
 import headerMp4 from '../assets/videos/siteHeader0001-0598.mp4';
 import LogoComponent from '../components/LogoComponent';
 import { HiSpeakerWave } from 'react-icons/hi2';
@@ -22,9 +23,8 @@ export default function HomePage() {
         </div>
       </div>
       <section>
-        <h2 className="text-center text-3xl my-6 font-[Kanit] font-medium tracking-wider">
-          MY WORK
-        </h2>
+        <h2 className="section-heading">MY WORK</h2>
+        <MyWorkComponent />
       </section>
     </>
   );
