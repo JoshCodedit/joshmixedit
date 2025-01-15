@@ -5,9 +5,9 @@ import HomePage from './pages/HomePage';
 function App() {
   return (
     <Router>
-      <div className=" text-midnight">
+      <div className="text-midnight">
         <Navbar />
-        <div>
+        <div className="pt-24">
           <Routes>
             <Route path="/" element={<HomePage />} />
           </Routes>
