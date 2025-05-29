@@ -38,17 +38,17 @@ export default function ServicesComponent() {
   ];
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-16 text-white">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div className="mx-auto max-w-[78%] px-4 py-10 text-white">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {pricingCards.map((card, index) => (
           <div
             key={index}
-            className="border rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow relative overflow-hidden"
+            className="border rounded-lg px-6 py-14 hover:shadow-xl hover:scale-105 transform transition-all duration-200 relative overflow-hidden w-80 mx-auto"
           >
             <img
               src={card.image}
               alt={card.title}
-              className="absolute inset-0 w-full h-full object-cover bg-cover bg-center"
+              className="absolute top-[-22px] left-0 w-full h-[110%] object-cover bg-cover"
             />
             <div className="relative z-10">
               <h3 className="text-xl text-center font-semibold mb-4">
