@@ -15,10 +15,13 @@ export default function MyWorkComponent() {
       ></iframe>
       <h3 className="text-xl mt-6 font-medium">CLICK BELOW TO HEAR MORE</h3>
       <div className="flex gap-4">
-        <button className="flex items-center justify-center gap-2 bg-crimson text-white px-4 py-2 rounded-full w-36 hover:shadow-lg hover:scale-110 transform transition-all duration-200">
+        <a
+          href="https://open.spotify.com/playlist/1nKc6W7tBDOjl76XP8OZ98?si=6kthXAjMRMOB6GToxc1imA"
+          className="flex items-center justify-center gap-2 bg-crimson text-white px-4 py-2 rounded-full w-36 hover:shadow-lg hover:scale-110 transform transition-all duration-200"
+        >
           <FaSpotify className="text-2xl" />
           <span>Spotify</span>
-        </button>
+        </a>
         <button className="flex items-center justify-center gap-2 bg-crimson text-white px-4 py-2 rounded-full hover:scale-110 transform transition-all duration-200">
           <FaApple className="text-2xl" />
           <span>Apple Music</span>
