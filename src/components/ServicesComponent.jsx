@@ -1,8 +1,8 @@
+import React, { useState } from 'react';
 import mixingImage from '../assets/images/misc/Image 15-01-2025 at 15.41.png';
 import masteringImage from '../assets/images/misc/Image 15-01-2025 at 15.42.png';
 import mixMasterImage from '../assets/images/misc/Image 15-01-2025 at 15.42 (1).png';
 import { DynamicEnquiryModal } from '../modals/DynamicEnquiryModal';
-import React, { useState } from 'react';
 import handleForm from '../utils/handleForm';
 
 export default function ServicesComponent() {
@@ -44,10 +44,6 @@ export default function ServicesComponent() {
       type: 'mixAndMaster',
     },
   ];
-
-  const yourSubmitHandler = () => {
-    // Add your submit logic here
-  };
 
   return (
     <div className="mx-auto max-w-[78%] px-4 py-10 text-white">
