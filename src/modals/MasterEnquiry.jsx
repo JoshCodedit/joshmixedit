@@ -1,7 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-export function MasterEnquiry({ isOpen, onClose }) {
+export function MasterEnquiry({ isOpen, onClose, onSubmit }) {
   const overlayRef = useRef(null);
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [demoLink, setDemoLink] = useState('');
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
     if (!isOpen) return;
@@ -14,9 +19,14 @@ export function MasterEnquiry({ isOpen, onClose }) {
 
   if (!isOpen) return null;
 
-  const onSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    // handle form submission here
+    const formData = { name, email, demoLink, message };
+    if (onSubmit) onSubmit(formData);
+    setName('');
+    setEmail('');
+    setDemoLink('');
+    setMessage('');
     onClose();
   };
 
@@ -45,11 +55,13 @@ export function MasterEnquiry({ isOpen, onClose }) {
           &times;
         </button>
         <h2 className="text-xl font-semibold mb-4">Master Enquiry</h2>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-sm font-medium mb-1">Your Name</label>
             <input
               type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               required
               className="w-full px-3 py-2 border rounded"
             />
@@ -59,16 +71,20 @@ export function MasterEnquiry({ isOpen, onClose }) {
             <label className="block text-sm font-medium mb-1">Email</label>
             <input
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
               className="w-full px-3 py-2 border rounded"
             />
           </div>
           <div className="mb-4">
             <label className="block text-sm font-medium mb-1">
-              Link To Unmastered Mix
+              Link To Demo Mix
             </label>
             <input
-              type="email"
+              type="text"
+              value={demoLink}
+              onChange={(e) => setDemoLink(e.target.value)}
               required
               className="w-full px-3 py-2 border rounded"
             />
@@ -78,6 +94,8 @@ export function MasterEnquiry({ isOpen, onClose }) {
               More Information
             </label>
             <textarea
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
               required
               className="w-full px-3 py-2 border rounded"
               rows="4"

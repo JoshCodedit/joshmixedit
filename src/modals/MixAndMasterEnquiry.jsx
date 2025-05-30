@@ -1,7 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-export function MixAndMasterEnquiry({ isOpen, onClose }) {
+export function MixAndMasterEnquiry({ isOpen, onClose, onSubmit }) {
   const overlayRef = useRef(null);
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [demoLink, setDemoLink] = useState('');
 
   useEffect(() => {
     if (!isOpen) return;
@@ -14,9 +19,22 @@ export function MixAndMasterEnquiry({ isOpen, onClose }) {
 
   if (!isOpen) return null;
 
-  const onSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    // handle form submission here
+
+    const formData = {
+      name,
+      email,
+      message,
+      demoLink,
+    };
+
+    console.log('Submitting form data:', formData); // <-- Add this line
+
+    if (onSubmit) {
+      onSubmit(formData);
+    }
+
     onClose();
   };
 
@@ -45,12 +63,15 @@ export function MixAndMasterEnquiry({ isOpen, onClose }) {
           &times;
         </button>
         <h2 className="text-xl font-semibold mb-4">Mix & Master Enquiry</h2>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-sm font-medium mb-1">Your Name</label>
             <input
               type="text"
+              value={name}
+              name="name"
               required
+              onChange={(e) => setName(e.target.value)}
               className="w-full px-3 py-2 border rounded"
             />
             <input type="hidden" value="mix-and-master-enquiry" />
@@ -59,6 +80,8 @@ export function MixAndMasterEnquiry({ isOpen, onClose }) {
             <label className="block text-sm font-medium mb-1">Email</label>
             <input
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
               className="w-full px-3 py-2 border rounded"
             />
@@ -68,7 +91,9 @@ export function MixAndMasterEnquiry({ isOpen, onClose }) {
               Link To Demo Mix
             </label>
             <input
-              type="email"
+              type="text"
+              value={demoLink}
+              onChange={(e) => setDemoLink(e.target.value)}
               required
               className="w-full px-3 py-2 border rounded"
             />
@@ -78,6 +103,9 @@ export function MixAndMasterEnquiry({ isOpen, onClose }) {
               More Information
             </label>
             <textarea
+              type="text"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
               required
               className="w-full px-3 py-2 border rounded"
               rows="4"

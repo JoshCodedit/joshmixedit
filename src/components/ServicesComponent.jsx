@@ -1,10 +1,9 @@
 import mixingImage from '../assets/images/misc/Image 15-01-2025 at 15.41.png';
 import masteringImage from '../assets/images/misc/Image 15-01-2025 at 15.42.png';
 import mixMasterImage from '../assets/images/misc/Image 15-01-2025 at 15.42 (1).png';
-import { MixEnquiry } from '../modals/MixEnquiry';
-import { MasterEnquiry } from '../modals/MasterEnquiry';
-import { MixAndMasterEnquiry } from '../modals/MixAndMasterEnquiry';
+import { DynamicEnquiryModal } from '../modals/DynamicEnquiryModal';
 import React, { useState } from 'react';
+import handleForm from '../utils/handleForm';
 
 export default function ServicesComponent() {
   const [openModal, setOpenModal] = useState(null);
@@ -104,20 +103,26 @@ export default function ServicesComponent() {
       </div>
 
       {/* modals */}
-      <MixEnquiry
+      <DynamicEnquiryModal
         isOpen={openModal === 'mix'}
         onClose={() => setOpenModal(null)}
-        onSubmit={yourSubmitHandler}
+        onSubmit={(formData) => handleForm('mix', formData)}
+        title="Mix Enquiry"
+        hiddenValue="mix-enquiry"
       />
-      <MixAndMasterEnquiry
+      <DynamicEnquiryModal
         isOpen={openModal === 'mixAndMaster'}
         onClose={() => setOpenModal(null)}
-        onSubmit={yourSubmitHandler}
+        onSubmit={(formData) => handleForm('mixAndMaster', formData)}
+        title="Mix & Master Enquiry"
+        hiddenValue="mix-and-master-enquiry"
       />
-      <MasterEnquiry
+      <DynamicEnquiryModal
         isOpen={openModal === 'master'}
         onClose={() => setOpenModal(null)}
-        onSubmit={yourSubmitHandler}
+        onSubmit={(formData) => handleForm('master', formData)}
+        title="Master Enquiry"
+        hiddenValue="master-enquiry"
       />
     </div>
   );

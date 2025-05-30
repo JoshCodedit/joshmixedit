@@ -1,26 +1,70 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-export function MixEnquiry({ isOpen, onClose, onSubmit }) {
+export function DynamicEnquiryModal({
+  isOpen,
+  onClose,
+  onSubmit,
+  title,
+  hiddenValue,
+}) {
   const overlayRef = useRef(null);
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [demoLink, setDemoLink] = useState('');
   const [message, setMessage] = useState('');
+  const [demoLinkError, setDemoLinkError] = useState('');
+  const [emailError, setEmailError] = useState('');
 
   useEffect(() => {
-    if (!isOpen) return;
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') onClose();
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, onClose]);
+    if (!isOpen) {
+      setName('');
+      setEmail('');
+      setDemoLink('');
+      setMessage('');
+      setDemoLinkError('');
+      setEmailError('');
+    }
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
+  const isValidUrl = (url) => {
+    try {
+      new URL(url);
+      return true;
+    } catch {
+      return false;
+    }
+  };
+
+  const isValidEmail = (email) => {
+    // Simple email regex
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    let valid = true;
+
+    if (!isValidUrl(demoLink)) {
+      setDemoLinkError(
+        'Please enter a valid URL (including http:// or https://)'
+      );
+      valid = false;
+    } else {
+      setDemoLinkError('');
+    }
+
+    if (!isValidEmail(email)) {
+      setEmailError('Please enter a valid email address');
+      valid = false;
+    } else {
+      setEmailError('');
+    }
+
+    if (!valid) return;
+
     const formData = { name, email, demoLink, message };
     if (onSubmit) onSubmit(formData);
     setName('');
@@ -54,7 +98,7 @@ export function MixEnquiry({ isOpen, onClose, onSubmit }) {
         >
           &times;
         </button>
-        <h2 className="text-xl font-semibold mb-4">Mix Enquiry</h2>
+        <h2 className="text-xl font-semibold mb-4">{title}</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-sm font-medium mb-1">Your Name</label>
@@ -65,7 +109,7 @@ export function MixEnquiry({ isOpen, onClose, onSubmit }) {
               required
               className="w-full px-3 py-2 border rounded"
             />
-            <input type="hidden" value="mix-enquiry" />
+            <input type="hidden" value={hiddenValue} />
           </div>
           <div className="mb-4">
             <label className="block text-sm font-medium mb-1">Email</label>
@@ -76,18 +120,25 @@ export function MixEnquiry({ isOpen, onClose, onSubmit }) {
               required
               className="w-full px-3 py-2 border rounded"
             />
+            {emailError && (
+              <p className="text-red-600 text-xs mt-1">{emailError}</p>
+            )}
           </div>
           <div className="mb-4">
             <label className="block text-sm font-medium mb-1">
               Link To Demo Mix
             </label>
             <input
-              type="text"
+              type="url"
               value={demoLink}
               onChange={(e) => setDemoLink(e.target.value)}
-              required
               className="w-full px-3 py-2 border rounded"
+              placeholder="https://example.com"
+              pattern="https?://.+"
             />
+            {demoLinkError && (
+              <p className="text-red-600 text-xs mt-1">{demoLinkError}</p>
+            )}
           </div>
           <div className="mb-4">
             <label className="block text-sm font-medium mb-1">
