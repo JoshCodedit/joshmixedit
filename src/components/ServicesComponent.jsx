@@ -1,8 +1,13 @@
 import mixingImage from '../assets/images/misc/Image 15-01-2025 at 15.41.png';
 import masteringImage from '../assets/images/misc/Image 15-01-2025 at 15.42.png';
 import mixMasterImage from '../assets/images/misc/Image 15-01-2025 at 15.42 (1).png';
+import { DynamicEnquiryModal } from '../modals/DynamicEnquiryModal';
+import React, { useState } from 'react';
+import handleForm from '../utils/handleForm';
 
 export default function ServicesComponent() {
+  const [openModal, setOpenModal] = useState(null);
+
   const pricingCards = [
     {
       title: 'Mixing',
@@ -13,6 +18,7 @@ export default function ServicesComponent() {
         'HQ audio files',
         '4 free revisions',
       ],
+      type: 'mix',
     },
     {
       title: 'Mastering',
@@ -23,6 +29,7 @@ export default function ServicesComponent() {
         'HQ audio files',
         '4 free revisions',
       ],
+      type: 'master',
     },
     {
       title: 'Mix & Master',
@@ -34,21 +41,26 @@ export default function ServicesComponent() {
         '4 free revisions',
         ,
       ],
+      type: 'mixAndMaster',
     },
   ];
 
+  const yourSubmitHandler = () => {
+    // Add your submit logic here
+  };
+
   return (
-    <div className="mx-auto max-w-5xl px-4 py-16 text-white">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div className="mx-auto max-w-[78%] px-4 py-10 text-white">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {pricingCards.map((card, index) => (
           <div
             key={index}
-            className="border rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow relative overflow-hidden"
+            className="border rounded-lg px-6 py-14 hover:shadow-xl hover:scale-105 transform transition-all duration-200 relative overflow-hidden w-80 mx-auto"
           >
             <img
               src={card.image}
               alt={card.title}
-              className="absolute inset-0 w-full h-full object-cover bg-cover bg-center"
+              className="absolute top-[-22px] left-0 w-full h-[110%] object-cover bg-cover"
             />
             <div className="relative z-10">
               <h3 className="text-xl text-center font-semibold mb-4">
@@ -79,13 +91,39 @@ export default function ServicesComponent() {
                 ))}
               </ul>
 
-              <button className="mt-8 w-full bg-crimson text-white py-2 px-4 rounded-lg hover:bg-mulberry transition-colors">
+              <button
+                className="mt-8 w-full bg-crimson text-white py-2 px-4 rounded-lg hover:bg-mulberry transition-colors"
+                onClick={() => setOpenModal(card.type)}
+              >
                 Enquire
               </button>
             </div>
           </div>
         ))}
       </div>
+
+      {/* modals */}
+      <DynamicEnquiryModal
+        isOpen={openModal === 'mix'}
+        onClose={() => setOpenModal(null)}
+        onSubmit={(formData) => handleForm('mix', formData)}
+        title="Mix Enquiry"
+        hiddenValue="mix-enquiry"
+      />
+      <DynamicEnquiryModal
+        isOpen={openModal === 'mixAndMaster'}
+        onClose={() => setOpenModal(null)}
+        onSubmit={(formData) => handleForm('mixAndMaster', formData)}
+        title="Mix & Master Enquiry"
+        hiddenValue="mix-and-master-enquiry"
+      />
+      <DynamicEnquiryModal
+        isOpen={openModal === 'master'}
+        onClose={() => setOpenModal(null)}
+        onSubmit={(formData) => handleForm('master', formData)}
+        title="Master Enquiry"
+        hiddenValue="master-enquiry"
+      />
     </div>
   );
 }
