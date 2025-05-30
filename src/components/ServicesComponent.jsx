@@ -1,8 +1,14 @@
 import mixingImage from '../assets/images/misc/Image 15-01-2025 at 15.41.png';
 import masteringImage from '../assets/images/misc/Image 15-01-2025 at 15.42.png';
 import mixMasterImage from '../assets/images/misc/Image 15-01-2025 at 15.42 (1).png';
+import { MixEnquiry } from '../modals/MixEnquiry';
+import { MasterEnquiry } from '../modals/MasterEnquiry';
+import { MixAndMasterEnquiry } from '../modals/MixAndMasterEnquiry';
+import React, { useState } from 'react';
 
 export default function ServicesComponent() {
+  const [openModal, setOpenModal] = useState(null);
+
   const pricingCards = [
     {
       title: 'Mixing',
@@ -13,6 +19,7 @@ export default function ServicesComponent() {
         'HQ audio files',
         '4 free revisions',
       ],
+      type: 'mix',
     },
     {
       title: 'Mastering',
@@ -23,6 +30,7 @@ export default function ServicesComponent() {
         'HQ audio files',
         '4 free revisions',
       ],
+      type: 'master',
     },
     {
       title: 'Mix & Master',
@@ -34,8 +42,13 @@ export default function ServicesComponent() {
         '4 free revisions',
         ,
       ],
+      type: 'mixAndMaster',
     },
   ];
+
+  const yourSubmitHandler = () => {
+    // Add your submit logic here
+  };
 
   return (
     <div className="mx-auto max-w-[78%] px-4 py-10 text-white">
@@ -79,13 +92,33 @@ export default function ServicesComponent() {
                 ))}
               </ul>
 
-              <button className="mt-8 w-full bg-crimson text-white py-2 px-4 rounded-lg hover:bg-mulberry transition-colors">
+              <button
+                className="mt-8 w-full bg-crimson text-white py-2 px-4 rounded-lg hover:bg-mulberry transition-colors"
+                onClick={() => setOpenModal(card.type)}
+              >
                 Enquire
               </button>
             </div>
           </div>
         ))}
       </div>
+
+      {/* modals */}
+      <MixEnquiry
+        isOpen={openModal === 'mix'}
+        onClose={() => setOpenModal(null)}
+        onSubmit={yourSubmitHandler}
+      />
+      <MixAndMasterEnquiry
+        isOpen={openModal === 'mixAndMaster'}
+        onClose={() => setOpenModal(null)}
+        onSubmit={yourSubmitHandler}
+      />
+      <MasterEnquiry
+        isOpen={openModal === 'master'}
+        onClose={() => setOpenModal(null)}
+        onSubmit={yourSubmitHandler}
+      />
     </div>
   );
 }

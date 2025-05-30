@@ -20,7 +20,7 @@ export default {
   layer: {
     components: {
       '.nav-link': 'cursor-pointer relative group',
-      '.nav-link::after': `content-[''] absolute left-0 -bottom-1 w-full h-0.5 bg-gradient-to-r from-crimson to-flame transform scale-x-0 transition-transform duration-300 origin-left group-hover:scale-x-100`,
+      '.nav-link::after': `content-[''] absolute left-0 -bottom-1 w-full h-0.5  to-flame transform scale-x-0 transition-transform duration-300 origin-left group-hover:scale-x-100`,
       '.section-heading':
         'text-center text-3xl my-6 font-kanit font-medium tracking-wider',
     },
