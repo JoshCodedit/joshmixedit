@@ -7,7 +7,7 @@ import {
 
 export default function Footer() {
   return (
-    <div className="bg-flame text-white flex flex-col items-center py-28">
+    <div className="bg-crimson text-white flex flex-col items-center py-28">
       <div className="flex gap-7 mb-2">
         <a
           href="https://x.com/joshmixedit"
