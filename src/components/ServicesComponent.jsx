@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import mixingImage from '../assets/images/misc/Image 15-01-2025 at 15.41.png';
 import masteringImage from '../assets/images/misc/Image 15-01-2025 at 15.42.png';
 import mixMasterImage from '../assets/images/misc/Image 15-01-2025 at 15.42 (1).png';
@@ -97,6 +98,12 @@ export default function ServicesComponent() {
           </div>
         ))}
       </div>
+      <Link
+        to="/StemPrep"
+        className="bg-crimson text-white max-w-[233px] px-6 py-2 mt-10 rounded-md hover:scale-105 hover:shadow-lg transform transition-all duration-200 block mx-auto text-center"
+      >
+        Mix Preparation Guide
+      </Link>
 
       {/* modals */}
       <DynamicEnquiryModal

@@ -2,18 +2,19 @@ import BackgroundVideo from '../components/BackgroundVideo';
 import MyWorkComponent from '../components/MyWorkComponent';
 import ServicesComponent from '../components/ServicesComponent';
 import AboutMe from '../components/AboutMe';
-import Footer from '../components/Footer';
 import headerMp4 from '../assets/videos/siteHeader0001-0598.mp4';
 import LogoComponent from '../components/LogoComponent';
 import { React, useState } from 'react';
 import { HiSpeakerWave } from 'react-icons/hi2';
 import { DynamicEnquiryModal } from '../modals/DynamicEnquiryModal';
 import handleForm from '../utils/handleForm';
+import ScrollToTop from '../utils/ScrollToTop';
 
 export default function HomePage() {
   const [openModal, setOpenModal] = useState(null);
   return (
     <>
+      <ScrollToTop />
       <div className="relative min-h-[85vh]">
         <BackgroundVideo videoSrc={headerMp4} />
         <div className="absolute inset-0 z-10 flex items-center justify-center flex-col">
