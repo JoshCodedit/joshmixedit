@@ -29,8 +29,6 @@ export function MixAndMasterEnquiry({ isOpen, onClose, onSubmit }) {
       demoLink,
     };
 
-    console.log('Submitting form data:', formData); // <-- Add this line
-
     if (onSubmit) {
       onSubmit(formData);
     }
@@ -94,7 +92,6 @@ export function MixAndMasterEnquiry({ isOpen, onClose, onSubmit }) {
               type="text"
               value={demoLink}
               onChange={(e) => setDemoLink(e.target.value)}
-              required
               className="w-full px-3 py-2 border rounded"
             />
           </div>

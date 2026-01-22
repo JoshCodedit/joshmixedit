@@ -47,31 +47,38 @@ export default function ServicesComponent() {
   ];
 
   return (
-    <div className="mx-auto max-w-[78%] px-4 py-10 text-white">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+    <div className="mx-auto max-w-[90%] px-5 py-12 text-white">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {pricingCards.map((card, index) => (
           <div
             key={index}
-            className="border rounded-lg px-6 py-14 hover:shadow-xl hover:scale-105 transform transition-all duration-200 relative overflow-hidden w-80 mx-auto"
+            className="border rounded-xl px-8 py-[70px] w-[360px] mx-auto
+                   hover:scale-105 hover:shadow-xl
+                   transform transition-all duration-200
+                   relative overflow-hidden"
           >
             <img
               src={card.image}
               alt={card.title}
-              className="absolute top-[-22px] left-0 w-full h-[110%] object-cover bg-cover"
+              className="absolute top-[-28px] left-0 w-full h-[120%] object-cover bg-cover"
             />
+
             <div className="relative z-10">
-              <h3 className="text-xl text-center font-semibold mb-4">
+              <h3 className="text-2xl text-center font-semibold mb-5">
                 {card.title}
               </h3>
-              <p className="text-lg text-center">From:</p>
-              <p className="text-3xl text-center font-bold mb-6">
+
+              <p className="text-xl text-center">From:</p>
+
+              <p className="text-4xl text-center font-bold mb-8">
                 {card.price}
               </p>
-              <ul className="space-y-2">
+
+              <ul className="space-y-3">
                 {card.features.map((feature, index) => (
-                  <li key={index} className="flex items-center">
+                  <li key={index} className="flex items-center text-lg">
                     <svg
-                      className="w-4 h-4 mr-2 text-white"
+                      className="w-5 h-5 mr-3 text-white"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -89,7 +96,8 @@ export default function ServicesComponent() {
               </ul>
 
               <button
-                className="mt-8 w-full bg-crimson text-white py-2 px-4 rounded-lg hover:bg-mulberry transition-colors"
+                className="mt-10 w-full bg-crimson text-white py-[10px] px-5 rounded-xl text-lg
+                       hover:bg-mulberry transition-colors"
                 onClick={() => setOpenModal(card.type)}
               >
                 Enquire
@@ -100,7 +108,7 @@ export default function ServicesComponent() {
       </div>
       <Link
         to="/StemPrep"
-        className="bg-crimson text-white max-w-[233px] px-6 py-2 mt-10 rounded-md hover:scale-105 hover:shadow-lg transform transition-all duration-200 block mx-auto text-center"
+        className="bg-crimson text-white text-lg max-w-[233px] px-6 py-3 mt-10 rounded-xl hover:scale-105 hover:shadow-lg transform transition-all duration-200 block mx-auto text-center"
       >
         Mix Preparation Guide
       </Link>

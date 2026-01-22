@@ -13,8 +13,6 @@ export function DynamicEnquiryModal({
   const [email, setEmail] = useState('');
   const [demoLink, setDemoLink] = useState('');
   const [message, setMessage] = useState('');
-  const [demoLinkError, setDemoLinkError] = useState('');
-  const [emailError, setEmailError] = useState('');
 
   useEffect(() => {
     if (!isOpen) {
@@ -22,49 +20,13 @@ export function DynamicEnquiryModal({
       setEmail('');
       setDemoLink('');
       setMessage('');
-      setDemoLinkError('');
-      setEmailError('');
     }
   }, [isOpen]);
 
   if (!isOpen) return null;
 
-  const isValidUrl = (url) => {
-    try {
-      new URL(url);
-      return true;
-    } catch {
-      return false;
-    }
-  };
-
-  const isValidEmail = (email) => {
-    // Simple email regex
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    let valid = true;
-
-    if (!isValidUrl(demoLink)) {
-      setDemoLinkError(
-        'Please enter a valid URL (including http:// or https://)'
-      );
-      valid = false;
-    } else {
-      setDemoLinkError('');
-    }
-
-    if (!isValidEmail(email)) {
-      setEmailError('Please enter a valid email address');
-      valid = false;
-    } else {
-      setEmailError('');
-    }
-
-    if (!valid) return;
-
     const formData = { name, email, demoLink, message };
     if (onSubmit) onSubmit(formData);
     setName('');
@@ -120,9 +82,6 @@ export function DynamicEnquiryModal({
               required
               className="w-full px-3 py-2 border rounded"
             />
-            {emailError && (
-              <p className="text-red-600 text-xs mt-1">{emailError}</p>
-            )}
           </div>
           <div className="mb-4">
             <label className="block text-sm font-medium mb-1">
@@ -134,11 +93,7 @@ export function DynamicEnquiryModal({
               onChange={(e) => setDemoLink(e.target.value)}
               className="w-full px-3 py-2 border rounded"
               placeholder="https://example.com"
-              pattern="https?://.+"
             />
-            {demoLinkError && (
-              <p className="text-red-600 text-xs mt-1">{demoLinkError}</p>
-            )}
           </div>
           <div className="mb-4">
             <label className="block text-sm font-medium mb-1">
