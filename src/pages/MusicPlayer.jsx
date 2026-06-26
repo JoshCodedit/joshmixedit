@@ -4,6 +4,7 @@ import { FaPlay, FaPause } from 'react-icons/fa';
 import 'react-h5-audio-player/lib/styles.css';
 import '../MusicPlayer.css';
 import tracks from '../json/tracks.json';
+import TrackInfoModal from '../modals/TrackInfoModal';
 
 
 export function MusicPlayer() {
@@ -12,6 +13,8 @@ export function MusicPlayer() {
   const [isSeeking, setIsSeeking] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [quality, setQuality] = useState("standard");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedTrack, setSelectedTrack] = useState(null);
 
   const currentTrack = tracks[currentIndex];
   const currentSrc = quality === "high" ? currentTrack.highSrc : currentTrack.standardSrc;
@@ -114,7 +117,8 @@ export function MusicPlayer() {
                     className="track-menu-btn"
                     onClick={(e) => {
                       e.stopPropagation();
-                      openModal(track);
+                      setSelectedTrack(track);
+                      setIsModalOpen(true);
                     }}
                   >
                     ⋮
@@ -143,6 +147,15 @@ export function MusicPlayer() {
         onClickPrevious={playPrevious}
         customVolumeControls={[]}
         customAdditionalControls={[]}
+      />
+
+      <TrackInfoModal
+        data={selectedTrack}
+        isOpen={isModalOpen}
+        onClose={() => {
+          setIsModalOpen(false);
+          setSelectedTrack(null);
+        }}
       />
     </div>
   );
